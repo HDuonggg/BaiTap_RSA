@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kết quả xác minh</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
+            min-height: 100vh;
+            font-family: 'Roboto', Arial, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .main-card {
+            padding: 48px 40px 40px 40px;
+            border-radius: 36px;
+            box-shadow: 0 16px 48px 0 rgba(31, 38, 135, 0.18);
+            background: rgba(255,255,255,0.60);
+            backdrop-filter: blur(16px);
+            max-width: 480px;
+            width: 100%;
+            border: 2px solid rgba(255,255,255,0.22);
+            animation: fadeIn 1s;
+            text-align: center;
+        }
+        .icon {
+            font-size: 4rem;
+            margin-bottom: 18px;
+            border-radius: 50%;
+            width: 90px;
+            height: 90px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: auto;
+            margin-right: auto;
+            box-shadow: 0 4px 24px 0 rgba(67, 233, 123, 0.15);
+            animation: bounceIn 1s;
+        }
+        .icon.success {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+            color: #fff;
+        }
+        .icon.fail {
+            background: linear-gradient(135deg, #f7971e 0%, #ffd200 100%);
+            color: #fff;
+        }
+        h2 {
+            font-family: 'Montserrat', Arial, sans-serif;
+            font-weight: 700;
+            color: #2d6187;
+            margin-bottom: 18px;
+        }
+        .alert {
+            font-size: 1.15rem;
+            margin-bottom: 28px;
+            border-radius: 12px;
+        }
+        .btn-primary {
+            min-width: 180px;
+            font-size: 1.1rem;
+            border-radius: 10px;
+            background: linear-gradient(90deg, #36d1c4 0%, #5b86e5 100%);
+            border: none;
+            color: #fff;
+        }
+        .btn-primary:hover {
+            background: linear-gradient(90deg, #5b86e5 0%, #36d1c4 100%);
+            color: #fff;
+        }
+        @media (max-width: 600px) {
+            .main-card { border-radius: 18px; padding: 24px 8px 20px 8px; }
+            .icon { font-size: 2.5rem; width: 60px; height: 60px; }
+            .btn-primary { min-width: 100%; }
+            h2 { font-size: 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="main-card animate__animated animate__fadeInDown">
+        {% if is_valid %}
+            <div class="icon success animate__animated animate__bounceIn">
+                <i class="fa-solid fa-circle-check"></i>
+            </div>
+            <h2>Chữ ký hợp lệ!</h2>
+            <div class="alert alert-success">
+                ✅ File chưa bị chỉnh sửa.
+            </div>
+        {% else %}
+            <div class="icon fail animate__animated animate__shakeX">
+                <i class="fa-solid fa-circle-xmark"></i>
+            </div>
+            <h2>Chữ ký không hợp lệ!</h2>
+            <div class="alert alert-danger">
+                ❌ File có thể bị chỉnh sửa hoặc sai public key.
+            </div>
+        {% endif %}
+        <a href="{{ url_for('index') }}" class="btn btn-primary mt-2">Quay lại trang chính</a>
+    </div>
+</body>
+</html>

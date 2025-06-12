@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xác minh chữ ký</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
+            min-height: 100vh;
+            font-family: 'Roboto', Arial, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .main-card {
+            display: flex;
+            flex-direction: row;
+            padding: 0;
+            border-radius: 36px;
+            box-shadow: 0 16px 48px 0 rgba(31, 38, 135, 0.18);
+            background: rgba(255,255,255,0.60);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            animation: fadeIn 1s;
+            max-width: 900px;
+            width: 100%;
+            border: 1.5px solid rgba(255,255,255,0.25);
+            overflow: hidden;
+        }
+        .left-panel {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+            color: #fff;
+            flex: 1.1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 32px;
+        }
+        .icon {
+            font-size: 5rem;
+            margin-bottom: 28px;
+            background: rgba(255,255,255,0.13);
+            border-radius: 50%;
+            width: 110px;
+            height: 110px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 32px 0 rgba(67, 233, 123, 0.18);
+            animation: bounceIn 1s;
+        }
+        .left-panel h1 {
+            font-family: 'Montserrat', Arial, sans-serif;
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: 1px;
+            font-size: 2.5rem;
+            margin-bottom: 18px;
+        }
+        .left-panel .lead {
+            color: #e6f9f5;
+            font-size: 1.15rem;
+            font-weight: 500;
+        }
+        .right-panel {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 60px 40px;
+            background: transparent;
+        }
+        h2 {
+            font-family: 'Montserrat', Arial, sans-serif;
+            font-weight: 700;
+            color: #2d6187;
+            margin-bottom: 18px;
+            font-size: 2rem;
+        }
+        .form-group label {
+            font-weight: 500;
+            color: #3a6073;
+        }
+        .btn-warning.btn-custom {
+            background: linear-gradient(90deg, #f7971e 0%, #ffd200 100%);
+            border: none;
+            color: #fff;
+            font-size: 1.1rem;
+            border-radius: 10px;
+            min-width: 180px;
+            font-weight: 600;
+            padding: 12px 0;
+            margin-top: 10px;
+            transition: transform 0.18s, box-shadow 0.18s, background 0.18s;
+            box-shadow: 0 2px 16px rgba(247,151,30,0.10);
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .btn-warning.btn-custom:hover, .btn-warning.btn-custom:focus {
+            background: linear-gradient(90deg, #ffd200 0%, #f7971e 100%);
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 8px 32px rgba(247,151,30,0.18);
+            color: #fff;
+        }
+        .btn-link {
+            color: #2d6187;
+            font-weight: 500;
+        }
+        @media (max-width: 900px) {
+            .main-card { flex-direction: column; max-width: 98vw; }
+            .left-panel, .right-panel { padding: 36px 16px; text-align: center; align-items: center; }
+            .right-panel { align-items: center; }
+        }
+        @media (max-width: 600px) {
+            .main-card { border-radius: 18px; }
+            .icon { font-size: 3rem; width: 70px; height: 70px; }
+            h2 { font-size: 1.2rem; }
+            .btn-warning.btn-custom { min-width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <div class="main-card animate__animated animate__fadeInDown">
+        <div class="left-panel">
+            <div class="icon animate__animated animate__bounceIn">
+                <i class="fa-solid fa-circle-check"></i>
+            </div>
+            <h1>Xác minh chữ ký</h1>
+            <p class="lead">Kiểm tra tính toàn vẹn và xác thực file bằng chữ ký số.</p>
+        </div>
+        <div class="right-panel">
+            <h2 class="mb-4">Nhập thông tin xác minh</h2>
+            <form action="/verify" method="post" enctype="multipart/form-data" style="width:100%;max-width:370px;">
+                <div class="form-group text-left w-100">
+                    <label for="file">Chọn file cần kiểm tra:</label>
+                    <input type="file" class="form-control" id="file" name="file" required>
+                </div>
+                <div class="form-group text-left w-100">
+                    <label for="signature">Chọn file chữ ký (.sig):</label>
+                    <input type="file" class="form-control" id="signature" name="signature" required>
+                </div>
+                <div class="form-group text-left w-100">
+                    <label for="public_key">Chọn public key (.pem):</label>
+                    <input type="file" class="form-control" id="public_key" name="public_key" required>
+                </div>
+                <button type="submit" class="btn btn-warning btn-custom w-100 mt-2">
+                    <i class="fa-solid fa-circle-check"></i> Xác minh
+                </button>
+            </form>
+            <a href="{{ url_for('index') }}" class="btn btn-link mt-3">Quay lại trang chính</a>
+        </div>
+    </div>
+</body>
+</html>
